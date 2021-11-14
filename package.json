@@ -10,7 +10,8 @@
   "author": "wujieli",
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.2.21"
+    "vue": "^3.2.21",
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
