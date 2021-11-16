@@ -19,6 +19,7 @@
     "@types/node": "^16.11.7",
     "@vitejs/plugin-vue": "^1.9.4",
     "@vue/compiler-sfc": "^3.2.21",
+    "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
