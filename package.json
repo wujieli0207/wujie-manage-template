@@ -5,7 +5,13 @@
   "scripts": {
     "serve": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "lint:eslint": "eslint \"{src,mock,types}/**/*.{vue,js,ts,tsx}\" --fix",
+    "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+    "commit": "cz"
   },
   "author": "wujieli",
   "license": "MIT",
@@ -21,12 +27,16 @@
     "@typescript-eslint/parser": "^5.4.0",
     "@vitejs/plugin-vue": "^1.9.4",
     "@vue/compiler-sfc": "^3.2.21",
+    "commitizen": "^4.2.4",
+    "cz-customizable": "^6.3.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.0.2",
     "prettier": "^2.4.1",
     "sass": "^1.43.4",
     "stylelint": "^14.1.0",
@@ -39,5 +49,10 @@
     "unplugin-vue-components": "^0.17.2",
     "vite": "^2.6.14",
     "vue-tsc": "^0.29.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
   }
 }
