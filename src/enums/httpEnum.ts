@@ -1,8 +1,9 @@
-export enum EResponseCode {
+enum EResponseCode {
   success = 0,
   error = 1,
 }
-
-export enum EhttpCode {
+enum EhttpCode {
   ok = 200,
 }
+
+export { EResponseCode, EhttpCode };
