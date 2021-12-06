@@ -10,8 +10,7 @@
     "lint:eslint": "eslint \"{src,mock,types}/**/*.{vue,js,ts,tsx}\" --fix",
     "lint:stylelint": "stylelint --fix --cache \"**/*.{vue,less,postcss,css,scss}\"  --cache-location node_modules/.cache/stylelint/",
     "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
-    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
-    "commit": "cz"
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js"
   },
   "author": "wujieli",
   "license": "MIT",
