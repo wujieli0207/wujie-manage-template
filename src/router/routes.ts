@@ -4,7 +4,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "basicTableDemo",
-    component: () => import("/@/views/demo/table/baseTableDemo/index.vue"),
+    component: () => import("/@/views/demo/table/basicTableDemo/index.vue"),
     meta: {
       title: "基本表格演示demo",
     },

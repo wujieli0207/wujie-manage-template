@@ -1,6 +1,13 @@
 <template>
   <div class="basic-table-demo">
-    <basic-table :columns="columns" :data="tableData" :allowSelect="false">
+    <basic-table
+      :columns="columns"
+      :data="tableData"
+      :allowSelect="true"
+      :showPaging="true"
+      @select="handleSelect"
+      @pagingChange="handlePagingChange"
+    >
       <template #state="scope">
         <el-tag
           :type="
@@ -26,6 +33,7 @@
   import basicTable from "/@/components/basicTable/index.vue";
   import useState from "./hooks/useState";
   import useBasicTableData from "./hooks/useBasicTableData";
+  import useBasicTable from "./hooks/useBasicTable";
 
   export default defineComponent({
     name: "BasicTableDemo",
@@ -35,10 +43,13 @@
     setup: () => {
       const { columns } = useState();
       const { tableData } = useBasicTableData();
+      const { handleSelect, handlePagingChange } = useBasicTable();
 
       return {
         columns,
         tableData,
+        handleSelect,
+        handlePagingChange,
       };
     },
   });

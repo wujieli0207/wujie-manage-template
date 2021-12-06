@@ -1,5 +1,5 @@
 <template>
-  <div class="table">
+  <div class="basic-table">
     <el-table
       border
       size="small"
@@ -25,14 +25,25 @@
         <el-table-column v-else v-bind="item" :key="item.prop"></el-table-column>
       </template>
     </el-table>
+
+    <pagination
+      v-if="showPaging"
+      :pagination="pagination"
+      @selectionChange="handleSelectionChange"
+      @pagingChange="handlePagingChange"
+    />
   </div>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
+  import Pagination from "/@/components/BasicPagination/index.vue";
 
   export default defineComponent({
     name: "basicTable",
+    components: {
+      Pagination,
+    },
     props: {
       allowSelect: {
         type: Boolean,
@@ -57,6 +68,7 @@
     },
     setup: (props, context) => {
       let multipleSelection = [];
+
       /**
        * @description 获取已选择表格的数据
        */
