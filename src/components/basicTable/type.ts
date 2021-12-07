@@ -1,3 +1,4 @@
+// Web 端表单参数配置项
 export interface IBasicColumnProp {
   prop: string; // 属性
   label: string; // 标签

@@ -6,37 +6,31 @@
       :data="data"
       :row-key="rowKey"
       v-bind="$attrs"
-      :handle-selection-change="handleSelectionChange()"
+      :selection-change="handleSelectionChange"
     >
       <el-table-column v-if="allowSelect" type="selection" width="55"></el-table-column>
       <template v-for="item in columns">
         <el-table-column v-if="item.slot" v-bind="item" :key="item.prop">
           <template #header>
-            <slot :name="item.slot.header">
-              {{ item.label || "自定义header" }}
-            </slot>
+            <slot :name="item.slot.header">{{ item.label || "自定义header" }}</slot>
           </template>
           <template #default="scope">
-            <slot :name="item.slot.body" :data="scope.row">
-              {{ scope.row[item.prop] || "需要自定义" }}
-            </slot>
+            <slot :name="item.slot.body" :data="scope.row">{{
+              scope.row[item.prop] || "需要自定义"
+            }}</slot>
           </template>
         </el-table-column>
-        <el-table-column v-else v-bind="item" :key="item.prop"></el-table-column>
+        <el-table-column v-if="!item.slot" v-bind="item" :key="item.prop"></el-table-column>
       </template>
     </el-table>
 
-    <pagination
-      v-if="showPaging"
-      :pagination="pagination"
-      @selectionChange="handleSelectionChange"
-      @pagingChange="handlePagingChange"
-    />
+    <pagination v-if="showPaging" :pagination="pagination" @pagingChange="handlePagingChange" />
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, PropType } from "vue";
+  import { IBasicColumnProp } from "./type";
   import Pagination from "/@/components/BasicPagination/index.vue";
 
   export default defineComponent({
@@ -50,7 +44,7 @@
         default: false,
       },
       columns: {
-        type: Array,
+        type: Array as PropType<IBasicColumnProp[]>,
         default: () => [],
       },
       data: {
@@ -65,6 +59,14 @@
         type: Boolean,
         default: false,
       },
+      pagination: {
+        type: Object,
+        default: () => ({
+          page: 1,
+          pageSize: 10,
+          total: 100,
+        }),
+      },
     },
     setup: (props, context) => {
       let multipleSelection = [];
@@ -72,7 +74,7 @@
       /**
        * @description 获取已选择表格的数据
        */
-      const handleSelectionChange = (val: Array<any>): void => {
+      const handleSelectionChange = (val?: Array<any>): void => {
         multipleSelection = val;
         context.emit("select", multipleSelection);
       };
