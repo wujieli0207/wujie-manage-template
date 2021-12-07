@@ -40,7 +40,7 @@
   import Pagination from "/@/components/BasicPagination/index.vue";
 
   export default defineComponent({
-    name: "basicTable",
+    name: "BasicTable",
     components: {
       Pagination,
     },
