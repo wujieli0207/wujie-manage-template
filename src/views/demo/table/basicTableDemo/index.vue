@@ -30,7 +30,7 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import basicTable from "/@/components/basicTable/index.vue";
+  import BasicTable from "/@/components/BasicTable/index.vue";
   import useState from "./hooks/useState";
   import useBasicTableData from "./hooks/useBasicTableData";
   import useBasicTable from "./hooks/useBasicTable";
@@ -38,7 +38,7 @@
   export default defineComponent({
     name: "BasicTableDemo",
     components: {
-      basicTable,
+      BasicTable,
     },
     setup: () => {
       const { columns } = useState();
