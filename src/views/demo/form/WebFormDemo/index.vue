@@ -1,31 +1,30 @@
 <template>
-  <web-form :form-field="formField" />
+  <web-form :form-field="formField" v-model="form" />
+  <el-button type="primary" :onclick="submitForm">提交</el-button>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
   import WebForm from "/@/components/WebForm/index.vue";
-  import type { IWebFormField } from "/@/components/WebForm/type";
+  import useState from "./hooks/useState";
+  import useFormField from "./hooks/useFormField";
   export default defineComponent({
     name: "WebFormDemo",
     components: {
       WebForm,
     },
     setup: (props, context) => {
-      const formField: IWebFormField[] = [
-        {
-          value: "name",
-          label: "姓名",
-          type: "input",
-          require: true,
-          other: {
-            style: "width: 220px",
-          },
-        },
-      ];
+      const { form } = useState();
+      const { formField } = useFormField();
+
+      const submitForm = (): void => {
+        console.log("form: ", form.value);
+      };
 
       return {
+        form,
         formField,
+        submitForm,
       };
     },
   });
