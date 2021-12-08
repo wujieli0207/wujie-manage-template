@@ -6,6 +6,11 @@
         :key="item.value"
         :label="item.label"
         :prop="item.value"
+        :rules="{
+          required: item.require,
+          message: item.errMsg || item.placeholder || item.label + '是毕录项',
+          trigger: 'change',
+        }"
       >
         <template v-if="['input', 'textarea'].includes(item.type)">
           <el-input
